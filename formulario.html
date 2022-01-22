@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Formulário Básico</title>
+</head>
+<body>
+        
+    <form method="get" name="cadastro">
+        <h1>Cadastro</h1>
+        <h2>Início > Cadastro</h2>
+        <div class="borderdiv"></div>
+        <fieldset id="dadosdaconta">
+            <legend id="dados">Dados da Conta</legend>
+            <input type="text" required id="ncinput" name="nomecompleto" placeholder="Nome de Usuário"/>
+            <input type="email" required id="eminput" name="email" placeholder="nome@email.com"/> </br>
+            <input type="password" required id="passinput" name="senha" placeholder="Senha"/>
+            <input type="password" required id="passinput" name="senha" placeholder="Confirme a senha"/> </br>
+            <p>Digite sua Senha.</p> </br>
+            <input type="tel" required id="telinput" name="telefone" placeholder="Telefone"/>
+            <input type="tel" required id="telinput" name="whatsapp" placeholder="Whatsapp"/> </br>
+            <input type="text" required id="cpfinput" name="CPF" placeholder="CPF"/></br>
+            <p>Digite seu CPF.</p>
+            <label name="empresa" id="tipo"> <strong>TIPO</strong>
+                <input type="checkbox" required id="empinput"/> Empresa
+            </label>
+            <button type="submit" id="button1">Enviar</button>
+        </fieldset>
+       
+    </form>
+
+</body>
+</html>

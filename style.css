@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Montserrat:wght@600&display=swap');
+
+* {
+    font-family: 'Dongle', sans-serif;
+    font-family: 'Montserrat', sans-serif;  
+}
+
+body {
+    margin: auto;
+}
+
+form {
+    margin: auto;
+    display: block;
+    align-items: center;
+    width: 1000px;
+}
+
+form h1 {
+    margin-bottom: 0px;
+}
+
+form h2 {
+    font-size: 15px;
+    margin: 0px 0px 20px 0px;
+}
+
+.borderdiv {
+    width: 998px;
+    border: 1px solid #DBB996;
+    margin-bottom: 15px;
+}
+
+#dadosdaconta {
+    border-radius: 10px;
+
+}
+
+#dados {
+    padding: 0px 10px 0px 10px;
+}
+
+#ncinput, #eminput, #passinput, #telinput, #cpfinput {
+    width: 400px;
+    outline: none;
+    border-radius: 5px;
+    height: 20px;
+    border: none;
+    border: 1px solid rgb(92, 92, 92);
+    padding: 2px 2px 2px 5px;
+    margin: 14px 5px 14px 5px;
+}
+
+#passinput, #cpfinput {
+    margin-bottom: 0px;
+}
+
+p {
+    margin: 0px;
+    margin: 0px 5px 14px 5px;
+    font-size: 13px;
+    
+}
+
+#tipo {
+    margin: 14px 5px 14px 5px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+
+#empinput {
+    margin-left: 20px;
+}
+
+#button1 {
+    margin-left: 920px;
+}
