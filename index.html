@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <title>Landing Page - Dispositivos</title>
+</head>
+<body>
+    <!-- Hero Section (placeholder for previous section) -->
+    <section id="hero-section">
+        <div class="hero-content">
+            <h1>Hero Section</h1>
+            <p>This is the previous section that connects to the devices showcase</p>
+        </div>
+    </section>
+
+    <!-- Section 1.1 - Devices with Depth Effect and Parallax -->
+    <section id="devices-showcase" class="devices-section">
+        <div class="devices-container">
+            <div class="devices-image-wrapper">
+                <img 
+                    src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+                    alt="Notebook, Tablet e Celular - Dispositivos Modernos" 
+                    class="devices-image"
+                    loading="lazy"
+                />
+                <div class="devices-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Section (placeholder) -->
+    <section id="next-section">
+        <div class="content">
+            <h2>Próxima Seção</h2>
+            <p>Conteúdo que vem após a showcase dos dispositivos</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </section>
+
+    <!-- Original Form (moved to bottom) -->
+    <section id="form-section">
+        <form method="get" name="cadastro">
+            <h1>Cadastro</h1>
+            <h2>Início > Cadastro</h2>
+            <div class="borderdiv"></div>
+            <fieldset id="dadosdaconta">
+                <legend id="dados">Dados da Conta</legend>
+                <input type="text" required id="ncinput" name="nomecompleto" placeholder="Nome de Usuário"/>
+                <input type="email" required id="eminput" name="email" placeholder="nome@email.com"/> </br>
+                <input type="password" required id="passinput" name="senha" placeholder="Senha"/>
+                <input type="password" required id="passinput" name="senha" placeholder="Confirme a senha"/> </br>
+                <p>Digite sua Senha.</p> </br>
+                <input type="tel" required id="telinput" name="telefone" placeholder="Telefone"/>
+                <input type="tel" required id="telinput" name="whatsapp" placeholder="Whatsapp"/> </br>
+                <input type="text" required id="cpfinput" name="CPF" placeholder="CPF"/></br>
+                <p>Digite seu CPF.</p>
+                <label name="empresa" id="tipo"> <strong>TIPO</strong>
+                    <input type="checkbox" required id="empinput"/> Empresa
+                </label>
+                <button type="submit" id="button1">Enviar</button>
+            </fieldset>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
