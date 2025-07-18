@@ -1,54 +1,242 @@
-@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Montserrat:wght@400;600;700&display=swap');
 
+/* Reset and Base Styles */
 * {
-    font-family: 'Dongle', sans-serif;
-    font-family: 'Montserrat', sans-serif;  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
-    margin: auto;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+#hero-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.3s forwards;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.6s forwards;
+}
+
+/* Section 1.1 - Devices Showcase with 3D Depth and Parallax */
+.devices-section {
+    width: 100vw;
+    height: 70vh;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background: #1a1a1a;
+}
+
+.devices-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 1000px;
+}
+
+.devices-image-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.devices-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transform: translateZ(-20px) rotateX(2deg) rotateY(-1deg) scale(1);
+    transition: transform 0.6s ease-out;
+    filter: brightness(1.1) contrast(1.1);
+    will-change: transform;
+}
+
+.devices-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(255, 255, 255, 0.05) 100%
+    );
+    pointer-events: none;
+    transition: opacity 0.6s ease-out;
+}
+
+/* Parallax and Depth Effects */
+.devices-section.scrolled .devices-image {
+    transform: translateZ(0px) translateY(-30px) rotateX(1deg) rotateY(-0.5deg) scale(1.08);
+    filter: brightness(1.2) contrast(1.15);
+}
+
+.devices-section.scrolled .devices-overlay {
+    opacity: 0.7;
+}
+
+/* Shadow and Blur Effects */
+.devices-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: inherit;
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: -1;
+    transition: all 0.6s ease-out;
+}
+
+.devices-section.scrolled .devices-image-wrapper::before {
+    filter: blur(30px);
+    opacity: 0.5;
+}
+
+/* Subtle Glow Effect */
+.devices-image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+    pointer-events: none;
+}
+
+.devices-section.scrolled .devices-image-wrapper::after {
+    opacity: 1;
+}
+
+/* Next Section */
+#next-section {
+    min-height: 100vh;
+    padding: 4rem 2rem;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#next-section .content {
+    max-width: 800px;
+    text-align: center;
+}
+
+#next-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+#next-section p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+/* Form Section (Original) */
+#form-section {
+    padding: 4rem 2rem;
+    background: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 form {
     margin: auto;
     display: block;
     align-items: center;
-    width: 1000px;
+    max-width: 1000px;
+    width: 100%;
 }
 
 form h1 {
     margin-bottom: 0px;
+    font-size: 2.5rem;
+    color: #333;
 }
 
 form h2 {
     font-size: 15px;
     margin: 0px 0px 20px 0px;
+    color: #666;
 }
 
 .borderdiv {
-    width: 998px;
+    width: 100%;
     border: 1px solid #DBB996;
     margin-bottom: 15px;
 }
 
 #dadosdaconta {
     border-radius: 10px;
-
+    padding: 2rem;
+    border: 1px solid #ddd;
 }
 
 #dados {
     padding: 0px 10px 0px 10px;
+    color: #333;
+    font-weight: 600;
 }
 
 #ncinput, #eminput, #passinput, #telinput, #cpfinput {
     width: 400px;
+    max-width: 100%;
     outline: none;
     border-radius: 5px;
-    height: 20px;
-    border: none;
+    height: 40px;
     border: 1px solid rgb(92, 92, 92);
-    padding: 2px 2px 2px 5px;
+    padding: 8px 12px;
     margin: 14px 5px 14px 5px;
+    font-size: 14px;
 }
 
 #passinput, #cpfinput {
@@ -56,10 +244,9 @@ form h2 {
 }
 
 p {
-    margin: 0px;
     margin: 0px 5px 14px 5px;
     font-size: 13px;
-    
+    color: #666;
 }
 
 #tipo {
@@ -67,6 +254,7 @@ p {
     font-size: 13px;
     display: flex;
     align-items: center;
+    color: #333;
 }
 
 #empinput {
@@ -74,5 +262,194 @@ p {
 }
 
 #button1 {
-    margin-left: 920px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s ease;
+    float: right;
+}
+
+#button1:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .devices-section {
+        height: 60vh;
+    }
+    
+    .devices-image {
+        transform: translateZ(-10px) rotateX(1deg) rotateY(-0.5deg) scale(1);
+    }
+    
+    .devices-section.scrolled .devices-image {
+        transform: translateZ(0px) translateY(-15px) rotateX(0.5deg) rotateY(-0.2deg) scale(1.05);
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    #next-section {
+        padding: 2rem 1rem;
+    }
+    
+    #next-section h2 {
+        font-size: 2rem;
+    }
+    
+    form {
+        padding: 0 1rem;
+    }
+    
+    #ncinput, #eminput, #passinput, #telinput, #cpfinput {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    #button1 {
+        float: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .devices-section {
+        height: 50vh;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    #next-section h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Improved Performance */
+.devices-image,
+.devices-overlay,
+.devices-image-wrapper::before,
+.devices-image-wrapper::after {
+    transform-origin: center center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Accessibility and Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+    .devices-section .devices-image {
+        transform: none !important;
+        transition: none !important;
+    }
+    
+    .devices-overlay {
+        transition: none !important;
+    }
+    
+    .devices-image-wrapper::before,
+    .devices-image-wrapper::after {
+        transition: none !important;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}
+
+/* Loading States */
+.devices-image {
+    opacity: 0;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.devices-image.loaded {
+    opacity: 1;
+}
+
+/* Touch Device Optimizations */
+.touch-device .devices-section {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+
+.touch-device .devices-image {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+
+/* High Performance Mode */
+.is-scrolling .devices-image {
+    pointer-events: none;
+}
+
+/* Additional Visual Effects */
+.devices-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        ellipse at center bottom,
+        rgba(255, 255, 255, 0.05) 0%,
+        transparent 50%
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Smooth scrolling behavior */
+html.supports-3d {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced focus indicators for accessibility */
+.devices-section:focus-within {
+    outline: 2px solid #667eea;
+    outline-offset: 4px;
+}
+
+/* Print styles */
+@media print {
+    .devices-section {
+        height: auto;
+        background: white;
+        page-break-inside: avoid;
+    }
+    
+    .devices-image {
+        transform: none !important;
+        filter: none !important;
+    }
 }
