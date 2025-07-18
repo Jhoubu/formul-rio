@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 Landing Page - Dispositivos com Parallax</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+        /* Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        #hero-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        /* 🌟 DEVICES SECTION - Main Feature */
+        .devices-section {
+            width: 100vw;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+        }
+
+        .devices-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .devices-image-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .devices-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transform: translateZ(-20px) rotateX(2deg) rotateY(-1deg) scale(1);
+            transition: transform 0.6s ease-out;
+            filter: brightness(1.1) contrast(1.1);
+            will-change: transform;
+            opacity: 0;
+        }
+
+        .devices-image.loaded {
+            opacity: 1;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .devices-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 0, 0, 0.3) 0%,
+                rgba(0, 0, 0, 0.1) 50%,
+                rgba(255, 255, 255, 0.05) 100%
+            );
+            pointer-events: none;
+            transition: opacity 0.6s ease-out;
+        }
+
+        /* Parallax Effects */
+        .devices-section.scrolled .devices-image {
+            transform: translateZ(0px) translateY(-30px) rotateX(1deg) rotateY(-0.5deg) scale(1.08);
+            filter: brightness(1.2) contrast(1.15);
+        }
+
+        .devices-section.scrolled .devices-overlay {
+            opacity: 0.7;
+        }
+
+        /* Visual Effects */
+        .devices-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: inherit;
+            filter: blur(20px);
+            opacity: 0.3;
+            z-index: -1;
+            transition: all 0.6s ease-out;
+        }
+
+        .devices-section.scrolled .devices-image-wrapper::before {
+            filter: blur(30px);
+            opacity: 0.5;
+        }
+
+        .devices-image-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(
+                ellipse at center,
+                rgba(255, 255, 255, 0.1) 0%,
+                transparent 70%
+            );
+            opacity: 0;
+            transition: opacity 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        .devices-section.scrolled .devices-image-wrapper::after {
+            opacity: 1;
+        }
+
+        /* Next Section */
+        #next-section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #next-section .content {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        #next-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        #next-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Performance */
+        .devices-image,
+        .devices-overlay,
+        .devices-image-wrapper::before,
+        .devices-image-wrapper::after {
+            transform-origin: center center;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .devices-section {
+                height: 60vh;
+            }
+            
+            .devices-image {
+                transform: translateZ(-10px) rotateX(1deg) rotateY(-0.5deg) scale(1);
+            }
+            
+            .devices-section.scrolled .devices-image {
+                transform: translateZ(0px) translateY(-15px) rotateX(0.5deg) rotateY(-0.2deg) scale(1.05);
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Status Info */
+        .status-info {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+            z-index: 9999;
+            max-width: 300px;
+        }
+
+        .status-info h4 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 50%;
+            right: 30px;
+            color: white;
+            font-size: 24px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="hero-section">
+        <div class="hero-content">
+            <h1>🌟 Seção dos Dispositivos</h1>
+            <p>Role para baixo para ver o efeito 3D e Parallax dos dispositivos</p>
+        </div>
+        <div class="scroll-indicator">⬇️</div>
+    </section>
+
+    <!-- 🌟 DEVICES SECTION - Main Feature -->
+    <section id="devices-showcase" class="devices-section">
+        <div class="devices-container">
+            <div class="devices-image-wrapper">
+                <img 
+                    src="https://images.unsplash.com/photo-1593642634315-48f5414c3ad9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+                    alt="Notebook, Tablet e Celular - Dispositivos Modernos" 
+                    class="devices-image"
+                    loading="lazy"
+                />
+                <div class="devices-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Section -->
+    <section id="next-section">
+        <div class="content">
+            <h2>✅ Efeitos Implementados</h2>
+            <p><strong>🎯 Efeito 3D:</strong> Inclinação sutil com perspectiva de profundidade</p>
+            <p><strong>🌊 Parallax Scroll:</strong> Movimento mais lento que o scroll da página</p>
+            <p><strong>🔍 Zoom Suave:</strong> Scale de 1.0 para 1.08 durante o scroll</p>
+            <p><strong>✨ Emergindo da Tela:</strong> TranslateZ de -20px para +5px</p>
+            <p><strong>💡 Brilho Dinâmico:</strong> Brightness e contrast aumentam com o scroll</p>
+            <p><strong>📱 Responsivo:</strong> Adaptado para desktop, tablet e mobile</p>
+        </div>
+    </section>
+
+    <!-- Status Info -->
+    <div class="status-info">
+        <h4>🟢 Status: Online</h4>
+        <p><strong>Efeitos:</strong> 3D + Parallax ativo</p>
+        <p><strong>Performance:</strong> 60fps otimizado</p>
+        <p><strong>Tamanho:</strong> Full Width (100vw)</p>
+        <p><strong>Responsivo:</strong> ✅ Ativo</p>
+    </div>
+
+    <script>
+        // Parallax and 3D Effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const devicesSection = document.getElementById('devices-showcase');
+            const devicesImage = document.querySelector('.devices-image');
+            
+            let ticking = false;
+            
+            function handleScroll() {
+                if (!ticking) {
+                    requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            }
+            
+            function updateParallax() {
+                const rect = devicesSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const triggerPoint = windowHeight * 0.8;
+                    const progress = Math.max(0, Math.min(1, (triggerPoint - rect.top) / (triggerPoint + rect.height * 0.5)));
+                    
+                    applyParallaxEffect(progress);
+                    
+                    if (progress > 0.1) {
+                        devicesSection.classList.add('scrolled');
+                    } else {
+                        devicesSection.classList.remove('scrolled');
+                    }
+                }
+                
+                ticking = false;
+            }
+            
+            function applyParallaxEffect(progress) {
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                
+                const translateY = easeOut * -40;
+                const scale = 1 + (easeOut * 0.12);
+                const rotateX = 2 - (easeOut * 1.5);
+                const rotateY = -1 + (easeOut * 0.7);
+                const translateZ = -20 + (easeOut * 25);
+                
+                const transform = `
+                    translateZ(${translateZ}px) 
+                    translateY(${translateY}px) 
+                    rotateX(${rotateX}deg) 
+                    rotateY(${rotateY}deg) 
+                    scale(${scale})
+                `;
+                
+                devicesImage.style.transform = transform;
+                
+                const brightness = 1.1 + (easeOut * 0.15);
+                const contrast = 1.1 + (easeOut * 0.1);
+                devicesImage.style.filter = `brightness(${brightness}) contrast(${contrast})`;
+            }
+            
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            
+            // Image loading
+            devicesImage.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+            
+            updateParallax();
+        });
+    </script>
+</body>
+</html>
